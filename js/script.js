@@ -24,4 +24,4 @@ console.log(`период равен ${period} месяцев
 
 console.log(addExpenses.toLowerCase().split(', '));
 
-console.log(budgetDay);
+console.log(budgetDay.toFixed(2));
