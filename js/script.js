@@ -46,7 +46,11 @@ function getAccumulatedMonth() {
 }
 
 function getTargetMonth() {
-    return Math.ceil(mission / accumulatedMonth);
+    if (money === expensesAmount) {
+        return 0;
+    } else {
+        return Math.ceil(mission / accumulatedMonth)
+    }
 }
 
 let showTypeOf = function (data) {
