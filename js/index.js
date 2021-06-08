@@ -1,18 +1,28 @@
 'use strict';
+let btnStart = document.getElementById('start'),
+    btnAddIncome = document.getElementsByTagName('button')[0],
+    btnAddExpenses = document.getElementsByTagName('button')[1],
+    depositCheck = document.querySelector('#deposit-check'),
+    incomeItem = document.querySelectorAll('.additional_income-item'),
+    resultValue = document.querySelectorAll('.result-total[class$=-value]'),
+    amount = document.querySelector('.salary-amount'),
+    incomeTitle = document.querySelector('.income-title'),
+    incomeAmount = document.querySelector('.income-amount'),
+    expensesTitle = document.querySelector('.expenses-title'),
+    expensesAmount = document.querySelector('.expenses-amount'),
+    targetAmount = document.querySelector('.target-amount'),
+    periodSelect = document.querySelector('.period-select');
 
-let money,
+//Временно заккоментировала код, чтобы дать странице загружаться без prompt
+
+
+/*let money,
     itemIncome,
     cashIncome,
     wordKeys,
-    // doWhile = function (item, text, func) {
-    //     do {
-    //         item = prompt(text)
-    //     }
-    //     while (func)
-    // },
     start = function () {
         do {
-            money = +prompt('Ваш месячный доход?');
+            money = +prompt('Ваш месячный доход?', '90000');
         }
         while (!isNumber(money) || money === 0)
     };
@@ -37,27 +47,27 @@ let appData = {
         budgetMonth: 0,
         expensesMonth: 0,
         asking: function () {
-            let addExpenses = prompt('Перечислите возможные расходы через запятую');
+            let addExpenses = prompt('Перечислите возможные расходы через запятую', 'такси, детский сад, интернет');
             appData.addExpenses = addExpenses.toLowerCase().split(', ');
 
             for (let i = 0; i < 2; i++) {
                 do {
-                    wordKeys = prompt('Введите обязательную статью расходов?');
+                    wordKeys = prompt('Введите обязательную статью расходов?', 'такси');
                 }
                 while (isNumber(wordKeys))
                 do {
-                    appData.expenses[wordKeys] = +prompt('Во сколько это обойдется');
+                    appData.expenses[wordKeys] = +prompt('Во сколько это обойдется', '5000');
                 }
                 while (!isNumber(appData.expenses[wordKeys]))
             }
             if (confirm('Есть ли у вас дополнительный источник заработка?')) {
                 do {
-                    itemIncome = prompt('Какой у вас дополнительный заработок')
+                    itemIncome = prompt('Какой у вас дополнительный заработок', 'стипендия')
                 }
                 while (isNumber(itemIncome))
 
                 do {
-                    cashIncome = +prompt('Сколько в месяц зарабатываете на этом?')
+                    cashIncome = +prompt('Сколько в месяц зарабатываете на этом?', '12000')
                 }
                 while (!isNumber(cashIncome));
                 appData.income[itemIncome] = cashIncome;
@@ -153,3 +163,4 @@ for (let key in appData) {
     console.log(key + ': ' + appData[key]);
 }
 
+*/
