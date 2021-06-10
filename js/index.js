@@ -14,14 +14,11 @@ let additionalExpensesItem = document.querySelector('.additional_expenses-item')
 let incomeItems = document.querySelectorAll('.income-items');
 let incomeAmounts = document.querySelectorAll('input.income-amount');
 
-
-
 let isNumber = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
 let appData = {
-    budget: 0,
     income: {},
     incomeMonth: 0,
     addIncome: [],
@@ -34,22 +31,20 @@ let appData = {
     budgetMonth: 0,
     expensesMonth: 0,
     start: function () {
-        salaryAmount = document.querySelector('.salary-amount');
-         incomeAmounts = document.querySelectorAll('input.income-amount');
+        incomeAmounts = document.querySelectorAll('input.income-amount');
         appData.testEmptyInput(salaryAmount, appData.testNumber);
         appData.getExpenses();
         appData.getIncome();
-        appData.getExpensesMonth();
         appData.getAddExpenses();
         appData.getAddIncome();
-        appData.getBudget();
+        appData.getExpensesMonth();
         appData.getIncomeMonth();
+        appData.getBudget();
         appData.showResult();
-
         //  appData.getInfoDeposit();
     },
     changeSalaryValue: function (){
-        appData.budget = +salaryAmount.value;
+        appData.budgetMonth = +salaryAmount.value;
     },
     showResult: function () {
         resultValue[0].value = appData.budgetMonth;
@@ -87,6 +82,7 @@ let appData = {
             if (itemExpenses !== '' && cashExpenses !== '') {
                 appData.expenses[itemExpenses] = +cashExpenses;
             }
+            console.log(cashExpenses);
         })
     },
     getIncome: function () {
@@ -94,9 +90,10 @@ let appData = {
         incomeItems.forEach(function (item) {
             let itemIncome = item.querySelector('.income-title').value;
             let cashIncome = item.querySelector('.income-amount').value;
-            if (itemIncome !== '' && cashIncome !== 0) {
+            if (itemIncome !== '' && cashIncome !== '') {
                 appData.income[itemIncome] = +cashIncome;
             }
+            console.log(cashIncome);
         })
     },
     getAddExpenses: function () {
@@ -132,7 +129,7 @@ let appData = {
             const value = appData.income[key];
             sum += +value;
         }
-        appData.incomeMonth = sum + appData.budget;
+        appData.incomeMonth = sum + appData.budgetMonth;
     },
     getBudget: function () {
         appData.budgetMonth = appData.incomeMonth - appData.expensesMonth;
