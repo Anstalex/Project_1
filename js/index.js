@@ -61,15 +61,6 @@ let appData = {
         resultValue[5].value = appData.calcSavedMoney();
         periodSelect.addEventListener('input', changeValueIncome)
     },
-    addExpensesBlock: function () {
-        let cloneExpensesItem = expensesItems[0].cloneNode(true);
-        let parentExpenses = expensesItems[0].parentNode;
-        parentExpenses.insertBefore(cloneExpensesItem, btnAddExpenses);
-        expensesItems = document.querySelectorAll('.expenses-items');
-        if (expensesItems.length === 3) {
-            btnAddExpenses.style.display = 'none';
-        }
-    },
     addIncomeBlock: function () {
         let cloneIncomeItem = incomeItems[0].cloneNode(true);
         let parentIncome = incomeItems[0].parentNode;
@@ -77,6 +68,15 @@ let appData = {
         incomeItems = document.querySelectorAll('.income-items');
         if (incomeItems.length === 3) {
             btnAddIncome.style.display = 'none';
+        }
+    },
+    addExpensesBlock: function () {
+        let cloneExpensesItem = expensesItems[0].cloneNode(true);
+        let parentExpenses = expensesItems[0].parentNode;
+        parentExpenses.insertBefore(cloneExpensesItem, btnAddExpenses);
+        expensesItems = document.querySelectorAll('.expenses-items');
+        if (expensesItems.length === 3) {
+            btnAddExpenses.style.display = 'none';
         }
     },
     getExpenses: function () {
