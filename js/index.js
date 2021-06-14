@@ -7,6 +7,7 @@ let additionalIncomeItems = document.querySelectorAll('.additional_income-item')
 let resultValue = document.querySelectorAll('.result-total[class$=-value]');
 let dataTitle = document.querySelectorAll('input[class$=-title]');
 let dataAmount = document.querySelectorAll('input[class$=-amount]');
+let dataItem = document.querySelectorAll('input[class$=-item]');
 let salaryAmount = document.querySelector('.salary-amount');
 let expensesItems = document.querySelectorAll('.expenses-items');
 let expensesTitle = document.querySelectorAll('input.expenses-title');
@@ -25,9 +26,7 @@ let isNumber = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
-function handler(selector, event, callback) {
-    const elements = document.querySelectorAll(selector);
-
+function handler(elements, event, callback) {
     for (const element of elements) {
         element.addEventListener(event, callback)
     }
@@ -46,11 +45,6 @@ function regExpString() {
     this.value = this.value.replace(/[^a-zA-ZА-Яа-яЁё\s.,]+/g, '');
 }
 
-handler('input[class$=-title]', 'keyup', regExpString);
-handler('input[class$=-amount]', 'keyup', regExpNum);
-handler('input[class$=-item]', 'keyup', regExpString);
-
-
 let appData = {
     income: {},
     incomeMonth: 0,
@@ -63,6 +57,14 @@ let appData = {
     budgetDay: 0,
     budgetMonth: 0,
     expensesMonth: 0,
+    getItem: function (){
+        let dataTitle = document.querySelectorAll('input[class$=-title]');
+        let dataAmount = document.querySelectorAll('input[class$=-amount]');
+        let dataItem = document.querySelectorAll('input[class$=-item]');
+        handler(dataTitle, 'keyup', regExpString);
+        handler(dataAmount, 'keyup', regExpNum);
+        handler(dataItem, 'keyup', regExpString);
+    },
     start: function () {
         let dataInput = document.querySelectorAll('.data input');
         incomeAmounts = document.querySelectorAll('input.income-amount');
@@ -126,6 +128,7 @@ let appData = {
         if (incomeItems.length === 3) {
             btnAddIncome.style.display = 'none';
         }
+        appData.getItem();
     },
     addExpensesBlock: function () {
         let cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -139,6 +142,7 @@ let appData = {
         if (expensesItems.length === 3) {
             btnAddExpenses.style.display = 'none';
         }
+        appData.getItem();
     },
     getExpenses: function () {
         expensesItems = document.querySelectorAll('.expenses-items');
@@ -288,6 +292,7 @@ btnAddIncome.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', changeValue);
 
 periodSelect.addEventListener('input', changeValueIncome);
+
 
 
 // dataAmount.addEventListener('keyup',regExp )
