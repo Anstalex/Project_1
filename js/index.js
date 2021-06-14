@@ -19,6 +19,7 @@ let incomeAmounts = document.querySelectorAll('input.income-amount');
 let dataInput = document.querySelectorAll('.data input');
 let btnCancel = document.querySelector('#cancel');
 
+
 btnStart.setAttribute('disabled', 'disabled');
 btnStart.style.pointerEvents = 'none';
 
@@ -267,6 +268,9 @@ function btnEnable() {
         btnStart.style.pointerEvents = ''
     }
 }
+handler(dataTitle, 'keyup', regExpString);
+handler(dataAmount, 'keyup', regExpNum);
+handler(dataItem, 'keyup', regExpString);
 
 salaryAmount.addEventListener('input', btnEnable);
 
