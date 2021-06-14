@@ -43,7 +43,7 @@ function regExpNum() {
 }
 
 function regExpString() {
-    this.value = this.value.replace(/[^a-zA-ZА-Яа-яЁё\s.,]+/g, '');
+    this.value = this.value.replace(/[^А-Яа-яЁё\s.,]+/g, '');
 }
 
 let appData = {
