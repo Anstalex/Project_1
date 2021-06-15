@@ -2,6 +2,7 @@
 let btnStart = document.querySelector('#start');
 let btnAddIncome = document.getElementsByTagName('button')[0];
 let btnAddExpenses = document.getElementsByTagName('button')[1];
+let periodAmount = document.querySelector('.period-amount');
 let depositCheck = document.querySelector('#deposit-check');
 let additionalIncomeItems = document.querySelectorAll('.additional_income-item');
 let resultValue = document.querySelectorAll('.result-total[class$=-value]');
@@ -95,6 +96,8 @@ let appData = {
         this.income = {};
         this.expenses = {};
         this.expensesMonth = 0;
+        periodSelect.value = 1;
+        periodAmount.innerText = 1;
         resultValue[0].value = '';
         resultValue[1].value = '';
         resultValue[2].value = '';
