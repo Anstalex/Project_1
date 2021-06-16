@@ -258,12 +258,10 @@ AppData.prototype.btnUnlock = function () {
     btnStart.style.pointerEvents = '';
 };
 AppData.prototype.btnEnable = function () {
-    console.log(this);
     if (salaryAmount.value === '') {
         salaryAmount.style.borderColor = 'blue';
         salaryAmount.placeholder = 'Поле не должно быть пустым';
         salaryAmount.focus();
-        console.log(this)
         AppData.prototype.btnBlock()
     } else {
         AppData.prototype.btnUnlock();
