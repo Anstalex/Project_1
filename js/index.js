@@ -58,7 +58,7 @@ AppData.prototype.regExpNumSalary = function () {
         AppData.prototype.btnBlock()
     }
     else if (salaryAmountValue === isValid) {
-        AppData.prototype.btnUnlock()
+        AppData.prototype.btnEnable()
     }
         salaryAmount.value = isValid;
     }
@@ -128,7 +128,7 @@ AppData.prototype.reset = function () {
     AppData.prototype.btnBlock();
 };
 AppData.prototype.changeSalaryValue = function () {
-    AppData.prototype.regExpNumSalary();
+    this.regExpNumSalary();
     this.budgetMonth = +salaryAmount.value;
 };
 AppData.prototype.showResult = function () {
@@ -258,13 +258,15 @@ AppData.prototype.btnUnlock = function () {
     btnStart.style.pointerEvents = '';
 };
 AppData.prototype.btnEnable = function () {
+    console.log(this);
     if (salaryAmount.value === '') {
         salaryAmount.style.borderColor = 'blue';
         salaryAmount.placeholder = 'Поле не должно быть пустым';
         salaryAmount.focus();
+        console.log(this)
         AppData.prototype.btnBlock()
     } else {
-        AppData.prototype.btnEnable();
+        AppData.prototype.btnUnlock();
     }
 };
 AppData.prototype.blockInput = function (items) {
