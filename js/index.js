@@ -109,6 +109,9 @@ AppData.prototype.reset = function () {
     dataInput.forEach(function (item) {
         item.value = '';
     })
+    periodSelect.removeEventListener('input', function (){
+        self.showValue()
+    });
     this.budgetMonth = 0;
     this.budgetDay = 0;
     this.incomeMonth = 0;
@@ -264,6 +267,7 @@ AppData.prototype.btnEnable = function () {
         salaryAmount.focus();
         AppData.prototype.btnBlock()
     } else {
+        salaryAmount.style.borderColor = '';
         AppData.prototype.btnUnlock();
     }
 };
