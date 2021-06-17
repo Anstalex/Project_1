@@ -39,15 +39,12 @@ const AppData = function () {
     this.showValue = function () {
         resultValue[5].value = this.calcSavedMoney();
     };
- }
+}
 
- AppData.prototype.regExpString = function () {
+AppData.prototype.regExpString = function () {
     this.value = this.value.replace(/[^А-Яа-яЁё\s.,]+/g, '');
 };
 
-// AppData.prototype.regExpNum = function () {
-//     this.value = this.value.replace(/\D/g, '');
-// };
 AppData.prototype.regExpNum = function () {
     this.value= this.value.replace(/\D/g, '');
 }
@@ -60,8 +57,8 @@ AppData.prototype.regExpNumSalary = function () {
     else if (salaryAmountValue === isValid) {
         AppData.prototype.btnEnable()
     }
-        salaryAmount.value = isValid;
-    }
+    salaryAmount.value = isValid;
+};
 
 AppData.prototype.load = function () {
     AppData.prototype.btnBlock();
@@ -78,9 +75,9 @@ AppData.prototype.getItem = function () {
     dataTitle = document.querySelectorAll('input[class$=-title]');
     dataAmount = document.querySelectorAll('input[class$=-amount]');
     dataItem = document.querySelectorAll('input[class$=-item]');
-     this.handler(dataTitle, 'keyup', this.regExpString);
+    this.handler(dataTitle, 'keyup', this.regExpString);
     this.handler(dataAmount, 'keyup', this.regExpNum);
-     this.handler(dataItem, 'keyup', this.regExpString);
+    this.handler(dataItem, 'keyup', this.regExpString);
 };
 AppData.prototype.start = function () {
     const self = this;
@@ -109,9 +106,7 @@ AppData.prototype.reset = function () {
     dataInput.forEach(function (item) {
         item.value = '';
     })
-    periodSelect.removeEventListener('input', function (){
-        self.showValue()
-    });
+
     this.budgetMonth = 0;
     this.budgetDay = 0;
     this.incomeMonth = 0;
