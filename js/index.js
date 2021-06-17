@@ -83,7 +83,6 @@ let appData = {
         periodSelect.addEventListener('input',function (){
             appData.showValue()
         })
-        //  this.getInfoDeposit();
     },
     reset: function () {
         let dataInput = document.querySelectorAll('.data input');
