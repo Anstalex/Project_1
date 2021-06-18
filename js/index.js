@@ -36,11 +36,11 @@ class AppData {
         this.incomeMonth = 0;
     }
 
-    calcSavedMoney() {
+    calcSavedMoney = () => {
         return (this.budgetMonth * periodSelect.value);
     }
 
-    showValue() {
+    showValue = () => {
         resultValue[5].value = this.calcSavedMoney();
     }
 
@@ -52,29 +52,18 @@ class AppData {
         this.value = this.value.replace(/\D/g, '');
     }
 
-    regExpNumSalary() {
-        let salaryAmountValue = salaryAmount.value
-        const isValid = salaryAmount.value.replace(/\D/g, '')
-        if (salaryAmountValue !== isValid) {
-            this.btnBlock()
-        } else if (salaryAmountValue === isValid) {
-            this.btnUnlock()
-        }
-        salaryAmount.value = isValid;
-    }
-
-    load() {
+    load = () => {
         this.btnBlock();
         this.getItem();
     }
 
-    handler(elements, event, callback) {
+    handler = (elements, event, callback) => {
         for (const element of elements) {
             element.addEventListener(event, callback)
         }
     }
 
-    getItem() {
+    getItem = () => {
         salaryAmount = document.querySelector('.salary-amount');
         dataTitle = document.querySelectorAll('input[class$=-title]');
         dataAmount = document.querySelectorAll('input[class$=-amount]');
@@ -84,7 +73,7 @@ class AppData {
         this.handler(dataItem, 'keyup', this.regExpString);
     }
 
-    start() {
+    start = () => {
         dataInput = document.querySelectorAll('.data input');
         incomeAmounts = document.querySelectorAll('input.income-amount');
         this.getExpInc();
@@ -103,7 +92,7 @@ class AppData {
 
     }
 
-    removeInput(item, btn) {
+    removeInput = (item, btn) => {
         item.forEach((elem, index) => {
             if (index === 0) return null;
             elem.remove()
@@ -113,7 +102,7 @@ class AppData {
         }
     }
 
-    reset() {
+    reset = () => {
         expensesItems = document.querySelectorAll('.expenses-items');
         incomeItems = document.querySelectorAll('.income-items');
 
@@ -139,12 +128,12 @@ class AppData {
         this.btnBlock();
     }
 
-    changeSalaryValue() {
-        this.btnEnable()
+    changeSalaryValue = () => {
+        this.btnEnable(salaryAmount)
         this.budgetMonth = +salaryAmount.value;
     }
 
-    showResult() {
+    showResult = () => {
         resultValue[0].value = this.budgetMonth;
         resultValue[1].value = this.budgetDay;
         resultValue[2].value = this.expensesMonth;
@@ -154,7 +143,7 @@ class AppData {
         resultValue[5].value = this.calcSavedMoney();
     }
 
-    addBlock(item, btn) {
+    addBlock = (item, btn) => {
         const className = item[0].className.split('-')[0];
         const cloneItem = item[0].cloneNode(true);
         const titleClone = cloneItem.querySelector(`input.${className}-title`);
@@ -170,7 +159,7 @@ class AppData {
         this.getItem();
     }
 
-    getExpInc() {
+    getExpInc = () => {
         const run = (item, variable) => {
             const className = item[0].className.split('-')[0];
             let items = document.querySelectorAll(`.${className}-items`);
@@ -186,7 +175,7 @@ class AppData {
         run(incomeItems, this.income);
     }
 
-    getAddItem(item, property) {
+    getAddItem = (item, property) => {
         if (item.length === 0) {
             item.value.split(',');
         }
@@ -198,7 +187,7 @@ class AppData {
         })
     }
 
-    getExpIncMonth() {
+    getExpIncMonth = () => {
         const run = (item) => {
             let sum = 0;
             for (const key in item) {
@@ -211,56 +200,58 @@ class AppData {
         this.incomeMonth = run(this.income) + +salaryAmount.value;
     }
 
-    getBudget() {
+    getBudget = () => {
         this.budgetMonth = this.incomeMonth - this.expensesMonth;
         this.budgetDay = Math.floor(this.budgetMonth / 30);
 
     }
 
-    getTargetMonth() {
+    getTargetMonth = () => {
         return targetAmount.value / this.budgetMonth;
 
     }
 
-    changeValue() {
+    changeValue = () => {
         const periodAmount = document.querySelector('.period-amount');
         periodAmount.innerText = periodSelect.value
     }
 
-    btnHide() {
+    btnHide = () => {
         btnStart.style.display = 'none';
         btnCancel.style.display = 'block';
     }
 
-    btnShow() {
+    btnShow = () => {
         btnStart.style.display = 'block';
         btnCancel.style.display = 'none';
     }
 
-    btnBlock() {
+    btnBlock = () => {
         btnStart.setAttribute('disabled', 'disabled');
         btnStart.style.pointerEvents = 'none'
     }
 
-    btnUnlock() {
+    btnUnlock = () => {
         btnStart.removeAttribute('disabled');
         btnStart.style.pointerEvents = '';
     }
 
-    btnEnable() {
-        this.regExpNumSalary()
-        if (salaryAmount.value === '') {
-            salaryAmount.style.borderColor = 'blue';
-            salaryAmount.placeholder = 'Поле не должно быть пустым';
-            salaryAmount.focus();
+    btnEnable = (input) => {
+        const isValid = input.value.replace(/\D/g, '')
+        input.value = isValid;
+        if (input.value === '') {
+            input.style.borderColor = 'blue';
+            input.placeholder = 'Поле не должно быть пустым';
+            input.focus();
             this.btnBlock()
-        } else {
-            salaryAmount.style.borderColor = '';
-            this.btnUnlock();
+        } else if (input.value === isValid) {
+            this.btnUnlock()
+            input.style.borderColor = '';
         }
+
     }
 
-    blockInput(items) {
+    blockInput = (items) => {
         for (const item of items) {
             item.setAttribute('readonly', 'readonly');
             item.style.backgroundColor = 'rgba(255,127,99,.26)';
@@ -268,7 +259,7 @@ class AppData {
         this.btnHide();
     }
 
-    unlockInput(items) {
+    unlockInput = (items) => {
         for (const item of items) {
             item.removeAttribute('readonly');
             item.style.backgroundColor = '';
@@ -276,22 +267,22 @@ class AppData {
         this.btnHide();
     }
 
-    eventListeners() {
+    eventListeners = () => {
 
-        document.addEventListener('DOMContentLoaded', this.load.bind(this))
+        document.addEventListener('DOMContentLoaded', this.load)
 
-        salaryAmount.addEventListener('input', this.changeSalaryValue.bind(this));
+        salaryAmount.addEventListener('input', this.changeSalaryValue);
 
-        btnStart.addEventListener('click', this.start.bind(this));
+        btnStart.addEventListener('click', this.start);
 
-        btnCancel.addEventListener('click', this.reset.bind(this));
+        btnCancel.addEventListener('click', this.reset);
 
 
-        btnAddExpenses.addEventListener('click', this.addBlock.bind(this, expensesItems, btnAddExpenses))
+        btnAddExpenses.addEventListener('click',()=>{this.addBlock(expensesItems, btnAddExpenses)})
 
-        btnAddIncome.addEventListener('click', this.addBlock.bind(this, incomeItems, btnAddIncome));
+        btnAddIncome.addEventListener('click', ()=>{this.addBlock(incomeItems, btnAddIncome)});
 
-        periodSelect.addEventListener('input', this.changeValue.bind(this));
+        periodSelect.addEventListener('input', this.changeValue);
     }
 }
 
