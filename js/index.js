@@ -252,9 +252,15 @@ class AppData {
         input.value = isValid;
         if (getComputedStyle(input).display !== 'none') {
             if (input.value === '') {
+                if(input === depositPercent){
+                    input.style.borderColor = 'blue';
+                    input.placeholder = 'Введите процентную ставку';
+                    return false
+                }else{
                 input.style.borderColor = 'blue';
                 input.placeholder = 'Поле не должно быть пустым';
                 return false
+                }
             } else if (input.value === isValid) {
                 if (input.style.display === 'inline-block') {
                     if (input.value.length > 2) {
@@ -273,7 +279,6 @@ class AppData {
             return true
         }
     }
-
 
 
     blockInput = (items) => {
