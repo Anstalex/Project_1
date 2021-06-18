@@ -27,7 +27,6 @@ class AppData {
         this.expenses = {};
         this.addExpenses = [];
         this.addIncome = [];
-        // this.deposit = false;
         // this.percentDeposit = 0;
         // this.moneyDeposit = 0;
         this.budgetDay = 0;
